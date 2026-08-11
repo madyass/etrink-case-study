@@ -11,16 +11,13 @@ class CatalogNormalizer:
         with open(self.file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
             
-            # Eğer veri doğrudan bir listeyse sorun yok
             if isinstance(data, list):
                 self.raw_data = data
-            # Eğer veri bir sözlükse (dict), içindeki listeyi bulalım (ör: data["products"])
             elif isinstance(data, dict):
                 for key, value in data.items():
                     if isinstance(value, list):
                         self.raw_data = value
                         break
-                # Eğer içinde liste bulamazsa, verinin kendisini tek elemanlı bir liste yapar
                 if not self.raw_data:
                     self.raw_data = [data]
 
@@ -44,10 +41,29 @@ class CatalogNormalizer:
         if val in ["var", "stokta", "yes", "true", "1"]: return "in_stock"
         return "out_of_stock"
 
+    def _clean_rating(self, rating_val):
+        if not rating_val:
+            return 0.0
+        try:
+            # Virgülü noktaya çevir ("5,0" -> "5.0")
+            clean_str = str(rating_val).replace(',', '.').strip()
+            return float(clean_str)
+        except ValueError:
+            return 0.0
+
+    def _clean_review_count(self, review_val):
+        if not review_val:
+            return 0
+        try:
+            # Metin içindeki harfleri temizle, sadece rakamları al
+            clean_str = re.sub(r'\D', '', str(review_val))
+            return int(clean_str) if clean_str else 0
+        except ValueError:
+            return 0
+
     def normalize(self):
         self.load_data()
         for item in self.raw_data:
-            # item string ise veya dictionary değilse atla (hataları önlemek için)
             if not isinstance(item, dict):
                 continue
                 
@@ -55,16 +71,16 @@ class CatalogNormalizer:
             max_price = self._clean_price(item.get("price_max"))
             
             normalized_item = {
-                "id": item.get("id", "UNKNOWN"),
-                "name": item.get("name", "İsimsiz Ürün"),
-                "url": item.get("url", ""),
+                "id": str(item.get("id", "UNKNOWN")).strip(),
+                "name": str(item.get("name", "İsimsiz Ürün")).strip(),
+                "url": str(item.get("url", "")).strip(),
                 "price": base_price,
                 "price_max": max_price,
                 "currency": str(item.get("currency", "USD")).upper().strip(),
                 "stock_status": self._clean_stock(item.get("stock_status")),
                 "category": str(item.get("category")).strip() if item.get("category") else "Uncategorized",
-                "rating": float(item.get("rating")) if item.get("rating") else 0.0,
-                "review_count": int(item.get("review_count")) if item.get("review_count") else 0
+                "rating": self._clean_rating(item.get("rating")),
+                "review_count": self._clean_review_count(item.get("review_count"))
             }
             self.normalized_data.append(normalized_item)
         return self.normalized_data
