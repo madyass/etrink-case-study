@@ -1,16 +1,24 @@
-import json
 import re
+import logging
+
+logger = logging.getLogger(__name__)
 
 class CatalogNormalizer:
-    def __init__(self, file_path):
-        self.file_path = file_path
+    def __init__(self):
         self.raw_data = []
         self.normalized_data = []
 
-    def load_data(self):
-        with open(self.file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+    def set_data(self, data):
+        # Shopify products.json formatı mı yoksa test veri setimiz mi algıla
+        if isinstance(data, dict) and "products" in data:
+            logger.info("Şema Algılandı: Shopify Live Endpoint")
+            self.raw_data = data["products"]
+            self.is_shopify = True
+        else:
+            logger.info("Şema Algılandı: Test Veri Seti (alfiq_catalog_snapshot)")
+            self.is_shopify = False
             
+            # Sözlük / Liste karışıklığı çözümü
             if isinstance(data, list):
                 self.raw_data = data
             elif isinstance(data, dict):
@@ -18,69 +26,49 @@ class CatalogNormalizer:
                     if isinstance(value, list):
                         self.raw_data = value
                         break
-                if not self.raw_data:
-                    self.raw_data = [data]
 
     def _clean_price(self, price_val):
-        if price_val is None or str(price_val).strip() == "":
-            return None
+        if not price_val: return None
         match = re.search(r'[\d\,\.]+', str(price_val))
         if match:
-            clean_str = match.group().replace(',', '.')
-            try:
-                return float(clean_str)
-            except ValueError:
-                return None
+            try: return float(match.group().replace(',', '.'))
+            except: return None
         return None
 
-    def _clean_stock(self, stock_val):
-        if not stock_val:
-            return "out_of_stock"
-        val = str(stock_val).lower().strip()
-        if "in" in val and "stock" in val: return "in_stock"
-        if val in ["var", "stokta", "yes", "true", "1"]: return "in_stock"
-        return "out_of_stock"
-
-    def _clean_rating(self, rating_val):
-        if not rating_val:
-            return 0.0
-        try:
-            # Virgülü noktaya çevir ("5,0" -> "5.0")
-            clean_str = str(rating_val).replace(',', '.').strip()
-            return float(clean_str)
-        except ValueError:
-            return 0.0
-
-    def _clean_review_count(self, review_val):
-        if not review_val:
-            return 0
-        try:
-            # Metin içindeki harfleri temizle, sadece rakamları al
-            clean_str = re.sub(r'\D', '', str(review_val))
-            return int(clean_str) if clean_str else 0
-        except ValueError:
-            return 0
-
     def normalize(self):
-        self.load_data()
+        logger.info("Normalizasyon işlemi başlatıldı.")
         for item in self.raw_data:
-            if not isinstance(item, dict):
-                continue
-                
-            base_price = self._clean_price(item.get("price"))
-            max_price = self._clean_price(item.get("price_max"))
+            if not isinstance(item, dict): continue
             
-            normalized_item = {
-                "id": str(item.get("id", "UNKNOWN")).strip(),
-                "name": str(item.get("name", "İsimsiz Ürün")).strip(),
-                "url": str(item.get("url", "")).strip(),
-                "price": base_price,
-                "price_max": max_price,
-                "currency": str(item.get("currency", "USD")).upper().strip(),
-                "stock_status": self._clean_stock(item.get("stock_status")),
-                "category": str(item.get("category")).strip() if item.get("category") else "Uncategorized",
-                "rating": self._clean_rating(item.get("rating")),
-                "review_count": self._clean_review_count(item.get("review_count"))
-            }
-            self.normalized_data.append(normalized_item)
+            if self.is_shopify:
+                # Shopify Canlı Veri Haritalaması
+                variants = item.get("variants", [{}])
+                base_price = self._clean_price(variants[0].get("price"))
+                
+                norm_item = {
+                    "id": str(item.get("id")),
+                    "name": item.get("title", "İsimsiz Ürün"),
+                    "url": "https://alfiqcopper.com/products/" + item.get("handle", ""),
+                    "price": base_price,
+                    "currency": "USD",
+                    "stock_status": "in_stock" if variants[0].get("available", True) else "out_of_stock",
+                    "category": item.get("product_type", "Uncategorized"),
+                    "rating": 5.0, # Canlı veride puan yoksa varsayılan
+                    "review_count": 0
+                }
+            else:
+                # Orijinal Test Verisi Haritalaması (önceki kod)
+                norm_item = {
+                    "id": str(item.get("id", "UNKNOWN")).strip(),
+                    "name": str(item.get("name", "İsimsiz Ürün")).strip(),
+                    "url": str(item.get("url", "")).strip(),
+                    "price": self._clean_price(item.get("price")),
+                    "currency": str(item.get("currency", "USD")).upper().strip(),
+                    "stock_status": "in_stock" if "in" in str(item.get("stock_status")).lower() or str(item.get("stock_status")).lower() in ["var", "stokta"] else "out_of_stock",
+                    "category": str(item.get("category")).strip() if item.get("category") else "Uncategorized",
+                    "rating": self._clean_price(item.get("rating")) or 0.0,
+                }
+            self.normalized_data.append(norm_item)
+            
+        logger.info(f"Normalizasyon tamamlandı. İşlenen ürün: {len(self.normalized_data)}")
         return self.normalized_data
