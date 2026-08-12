@@ -45,10 +45,22 @@ def main():
         except Exception as e:
             logger.error(f"Senaryo {i} işlenirken kritik hata: {e}")
 
-    # 4. CSV Çıktısı (Bonus)
+    # 4. CSV ve JSON Çıktısı
     if all_results:
         output_dir = os.path.join(os.path.dirname(__file__), '..', 'outputs')
+        
+        # Çıktı klasörünün var olduğundan emin ol (yoksa oluştur)
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # CSV kaydı
         export_to_csv(all_results, output_dir)
+        
+        # JSON kaydı
+        json_file_path = os.path.join(output_dir, 'results.json')
+        with open(json_file_path, 'w', encoding='utf-8') as f:
+            json.dump(all_results, f, ensure_ascii=False, indent=4)
+        
+        logger.info(f"Sonuçlar JSON olarak kaydedildi: {json_file_path}")
         
     logger.info("=== İşlem Tamamlandı ===")
 
