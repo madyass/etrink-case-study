@@ -1,0 +1,167 @@
+[
+    {
+        "kullanici_talebi": "100 dolar altında, iyi puanlı, hediyelik bir ürün öner",
+        "onerilen_urunler": [
+            {
+                "id": "10124123537719",
+                "ad": "Gold-Plated Bow Tie Ribbon Handmade Ceramic Mug & Real Gold Plated Accents",
+                "fiyat": 52.0,
+                "url": "https://alfiqcopper.com/products/handmade-bow-tie-ceramic-mug-real-hold-accents",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "10124123210039",
+                "ad": "Handmade Ceramic Mug for Mothers Day with 24ct Gold Accents – Elegant Floral Design",
+                "fiyat": 42.0,
+                "url": "https://alfiqcopper.com/products/handmade-ceramic-mothers-day-mug",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "10124111348023",
+                "ad": "Handmade Hammered Copper Pet Bowl – Luxury Pet Dish with Engraved Bone Print Design",
+                "fiyat": 89.0,
+                "url": "https://alfiqcopper.com/products/handcrafted-hammered-copper-cat-bowl-luxury-pet-dish-with-engraved-paw-print-design-copy",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "10124100206903",
+                "ad": "Handcrafted Hammered Copper Cat Bowl – Luxury Pet Dish with Engraved Paw Print Design",
+                "fiyat": 89.0,
+                "url": "https://alfiqcopper.com/products/handcrafted-copper-pet-bowl-luxury-pet-dish",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "10125256261943",
+                "ad": "Handmade Adjustable Solid Copper & Brass Cuff Bracelet, Color Mocha Mouse",
+                "fiyat": 49.0,
+                "url": "https://alfiqcopper.com/products/handcrafted-braided-pure-copper-cuff-bracelet-with-brass-ends-copy",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "9952315638071",
+                "ad": "Handcrafted Copper Oil Lamp and Candle Set of 2 | Handmade Solid Copper Lantern",
+                "fiyat": 139.0,
+                "url": "https://alfiqcopper.com/products/handcrafted-copper-oil-lamp-and-candle-set-of-2-handmade-solid-copper-lantern-copy",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "9669338300727",
+                "ad": "Handmade Matte Copper Pendant Light – Timeless Elegance in a Hand-Hammered Finish",
+                "fiyat": 189.0,
+                "url": "https://alfiqcopper.com/products/handmade-matte-copper-pendant-light",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "9942872031543",
+                "ad": "Handmade Pure Copper Pumpkin Decor with Hanger | Decorative Housewarming Copper Ornaments 4\" x 4\"",
+                "fiyat": 109.0,
+                "url": "https://alfiqcopper.com/products/handmade-copper-pumpkin-decor-with-hanger-decorative-housewarming-copper-ornaments-4-x-4-copy",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "9942873243959",
+                "ad": "Handmade Dark Copper Pumpkin Decor with Hanger | Decorative Housewarming Copper Ornaments 4\" x 4\"",
+                "fiyat": 109.0,
+                "url": "https://alfiqcopper.com/products/handmade-copper-pumpkin-decor-with-hanger-decorative-housewarming-copper-ornaments-4-x-4-copy-1",
+                "secim_gerekcesi": ""
+            }
+        ],
+        "calisma_zamani": "2026-08-12T10:58:48.473356+00:00"
+    },
+    {
+        "kullanici_talebi": "Bir spa işletmesi için 300 dolar bütçeyle 2 ürün öner",
+        "onerilen_urunler": [
+            {
+                "id": "10124233769271",
+                "ad": "Handmade Solid Copper Wall Clock With Verdigris Patina, Color Ocean Blue (12\" / 300 mm)",
+                "fiyat": 329.0,
+                "url": "https://alfiqcopper.com/products/handmade-solid-copper-wall-clock-ocean-blue-verdigris-patina",
+                "secim_gerekcesi": true
+            },
+            {
+                "id": "10124233539895",
+                "ad": "Handmade Solid Copper Wall Art With Full Verdigris Patina, Color Ocean Blue",
+                "fiyat": 329.0,
+                "url": "https://alfiqcopper.com/products/handmade-solid-copper-wall-art-with-verdigris-patina-ocean-blue",
+                "secim_gerekcesi": true
+            }
+        ],
+        "calisma_zamani": "2026-08-12T10:58:51.249657+00:00"
+    },
+    {
+        "kullanici_talebi": "Türk kahvesi seven birine hediye ariyorum, stokta olsun",
+        "onerilen_urunler": [
+            {
+                "id": "10124123537719",
+                "ad": "Gold-Plated Bow Tie Ribbon Handmade Ceramic Mug & Real Gold Plated Accents",
+                "fiyat": 52.0,
+                "url": "https://alfiqcopper.com/products/handmade-bow-tie-ceramic-mug-real-hold-accents",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "10124123210039",
+                "ad": "Handmade Ceramic Mug for Mothers Day with 24ct Gold Accents – Elegant Floral Design",
+                "fiyat": 42.0,
+                "url": "https://alfiqcopper.com/products/handmade-ceramic-mothers-day-mug",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "10124111348023",
+                "ad": "Handmade Hammered Copper Pet Bowl – Luxury Pet Dish with Engraved Bone Print Design",
+                "fiyat": 89.0,
+                "url": "https://alfiqcopper.com/products/handcrafted-hammered-copper-cat-bowl-luxury-pet-dish-with-engraved-paw-print-design-copy",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "10124100206903",
+                "ad": "Handcrafted Hammered Copper Cat Bowl – Luxury Pet Dish with Engraved Paw Print Design",
+                "fiyat": 89.0,
+                "url": "https://alfiqcopper.com/products/handcrafted-copper-pet-bowl-luxury-pet-dish",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "10125256261943",
+                "ad": "Handmade Adjustable Solid Copper & Brass Cuff Bracelet, Color Mocha Mouse",
+                "fiyat": 49.0,
+                "url": "https://alfiqcopper.com/products/handcrafted-braided-pure-copper-cuff-bracelet-with-brass-ends-copy",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "10126170095927",
+                "ad": "Elegant Hand-Hammered Copper Stew Pot with Lid, Traditional Pan for Serving & Cooking with Brass Handles",
+                "fiyat": 149.0,
+                "url": "https://alfiqcopper.com/products/elegant-hand-hammered-copper-cooking-pot-with-lid",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "9669338300727",
+                "ad": "Handmade Matte Copper Pendant Light – Timeless Elegance in a Hand-Hammered Finish",
+                "fiyat": 189.0,
+                "url": "https://alfiqcopper.com/products/handmade-matte-copper-pendant-light",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "9942872031543",
+                "ad": "Handmade Pure Copper Pumpkin Decor with Hanger | Decorative Housewarming Copper Ornaments 4\" x 4\"",
+                "fiyat": 109.0,
+                "url": "https://alfiqcopper.com/products/handmade-copper-pumpkin-decor-with-hanger-decorative-housewarming-copper-ornaments-4-x-4-copy",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "9942873243959",
+                "ad": "Handmade Dark Copper Pumpkin Decor with Hanger | Decorative Housewarming Copper Ornaments 4\" x 4\"",
+                "fiyat": 109.0,
+                "url": "https://alfiqcopper.com/products/handmade-copper-pumpkin-decor-with-hanger-decorative-housewarming-copper-ornaments-4-x-4-copy-1",
+                "secim_gerekcesi": ""
+            },
+            {
+                "id": "9952315638071",
+                "ad": "Handcrafted Copper Oil Lamp and Candle Set of 2 | Handmade Solid Copper Lantern",
+                "fiyat": 139.0,
+                "url": "https://alfiqcopper.com/products/handcrafted-copper-oil-lamp-and-candle-set-of-2-handmade-solid-copper-lantern-copy",
+                "secim_gerekcesi": ""
+            }
+        ],
+        "calisma_zamani": "2026-08-12T10:59:00.859287+00:00"
+    }
+]
